@@ -1,0 +1,54 @@
+# The build is this repository's test suite.
+#
+# Several invariants are enforced by code that throws during `next build`
+# rather than by a separate checker:
+#
+#   - content/solutions.ts       fails if a solution references a system slug
+#                                that does not exist
+#   - content/legal/privacy.ts   fails if privacyReviewed is flipped to true
+#                                while gaps remain, or with no effective date
+#   - lib/status.ts              has no status field to set, so a system can
+#                                only read "production ready" when all twelve
+#                                release gates are actually true
+#
+# Running the build on every push is therefore what keeps those guards honest.
+# A green tick here means the catalogue is internally consistent — it does not
+# mean the placeholder content has been verified. See README.md.
+
+name: build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # Types first: a type error surfaces faster and reads more clearly here
+      # than it does inside a Next build log.
+      - run: npm run typecheck
+
+      # Produces out/ via output: "export". This is where the guards fire.
+      - run: npm run build
+
+      - name: Upload static export
+        uses: actions/upload-artifact@v4
+        with:
+          name: static-export
+          path: out/
+          retention-days: 7

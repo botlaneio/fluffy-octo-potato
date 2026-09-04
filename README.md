@@ -362,6 +362,15 @@ npx vercel           # deploy — first run links/creates the project
 npx vercel --prod    # promote to production
 ```
 
+`.github/workflows/build.yml` runs `npm run typecheck` and `npm run build` on
+every push and pull request. That is deliberately the whole test suite: the
+invariants this codebase cares about — no orphaned solution slugs, no reviewed
+privacy policy with gaps outstanding, no system labelled production ready
+without twelve closed gates — are enforced by code that throws during the
+build, so building *is* testing them. A green tick means the catalogue is
+internally consistent. It does not mean the placeholder content below has been
+verified.
+
 `bundle-full-site.mjs` stitches the whole export into one self-contained HTML
 file with a hash router — every page browsable offline, filters and deep links
 working, no server. Useful for review on a device that cannot run the project.
