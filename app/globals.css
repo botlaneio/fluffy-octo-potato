@@ -1,6 +1,16 @@
 @import "tailwindcss";
 @import "./fonts.css";
 
+/* Drives .nav-shell — see the navigation shell block below. Declared outside
+   the cascade layers so it is never subject to layer ordering. */
+@keyframes nav-settle {
+  to {
+    background-color: color-mix(in srgb, var(--color-bg) 82%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom-color: var(--color-line);
+  }
+}
+
 /* ==========================================================================
    BotLane design system — tokens
    Single source of truth. Nothing below this block hard-codes a colour,
@@ -328,6 +338,49 @@
   }
   .btn-ghost:hover {
     color: var(--color-fg);
+  }
+
+  /* --- Navigation shell ------------------------------------------------
+     The base rule is the settled bar: opaque, blurred, hairline beneath.
+     That is deliberately what a browser gets when it cannot run a scroll
+     timeline, because a readable nav from the first pixel is the only
+     state that is always safe. A transparent-by-default nav that never
+     settles would put the links over the page content.
+
+     Where scroll() timelines exist, the bar instead starts invisible over
+     the hero and settles across the first 96px of scroll. This is a CSS
+     scroll timeline, not a scroll listener: no JavaScript, nothing to
+     hydrate, and the effect is driven by scroll position rather than by
+     frames, so it cannot fall behind the scroll.
+     -------------------------------------------------------------------- */
+  .nav-shell {
+    background-color: color-mix(in srgb, var(--color-bg) 82%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  @supports (animation-timeline: scroll()) {
+    .nav-shell {
+      background-color: transparent;
+      /* blur(0px) rather than none: same function, so it interpolates. */
+      backdrop-filter: blur(0px);
+      border-bottom-color: transparent;
+      animation: nav-settle linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0 96px;
+    }
+  }
+
+  /* Reduced motion gets the settled bar outright. The change is a fade
+     rather than movement, but it is still something appearing on scroll,
+     and the settled state loses nothing. */
+  @media (prefers-reduced-motion: reduce) {
+    .nav-shell {
+      animation: none;
+      background-color: color-mix(in srgb, var(--color-bg) 82%, transparent);
+      backdrop-filter: blur(12px);
+      border-bottom-color: var(--color-line);
+    }
   }
 
   /* --- Chips & badges ------------------------------------------------- */

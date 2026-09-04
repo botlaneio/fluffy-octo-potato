@@ -4,16 +4,14 @@ import { primaryNav, accountsEnabled } from "@/content/site";
 /**
  * Zero client JavaScript. The mobile menu is a native <details> disclosure,
  * which is keyboard operable and screen-reader announced without hydration.
+ *
+ * The bar's surface styling lives in `.nav-shell` rather than inline, because
+ * the scroll-timeline rules that fade it in over the hero have to be able to
+ * override it — and an inline style beats any stylesheet.
  */
 export function Nav() {
   return (
-    <header
-      className="sticky top-0 z-50 border-b border-line"
-      style={{
-        backgroundColor: "color-mix(in srgb, var(--color-bg) 82%, transparent)",
-        backdropFilter: "blur(12px)",
-      }}
-    >
+    <header className="nav-shell sticky top-0 z-50">
       <nav aria-label="Primary" className="page-container">
         {/* Three-column grid at desktop rather than a flex row: the outer
             columns are equal 1fr regardless of how wide the logo or the CTA

@@ -16,6 +16,20 @@ Every section is server-rendered. The mobile menu is a native `<details>`
 disclosure, which is keyboard operable and screen-reader announced without
 hydration, so there is no `"use client"` anywhere in the homepage tree.
 
+The nav's fade-in is the case worth explaining, because it is the kind of thing
+that usually costs a scroll listener. It is a CSS scroll timeline instead
+(`animation-timeline: scroll()` on `.nav-shell`): the bar is transparent over
+the hero and settles into its opaque state across the first 96px of scroll,
+driven by scroll position rather than by frames, so it cannot lag behind the
+scroll the way a listener can.
+
+The fallback is the part that matters. The base rule is the *settled* bar, and
+the transparent state only exists inside `@supports (animation-timeline:
+scroll())`. A browser without scroll timelines — Firefox at the time of writing
+— gets a readable nav from the first pixel rather than a transparent one that
+never settles and leaves the links sitting on top of the page content. Reduced
+motion gets the settled bar outright.
+
 ## Architecture
 
 ```
