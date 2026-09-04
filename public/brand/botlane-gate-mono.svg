@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="currentColor">
+  <title>BotLane — the Gate mark, one colour</title>
+  <!-- Inherits currentColor when inlined; defaults to black when linked.
+       For print, embroidery, stamping, and anywhere the accent cannot go. -->
+  <rect x="4" y="3" width="3.6" height="26" rx="1.8"/>
+  <rect x="24.4" y="3" width="3.6" height="26" rx="1.8"/>
+  <rect x="7.6" y="19.4" width="16.8" height="2.4" rx="1.2" opacity="0.45"/>
+  <rect x="11.6" y="6.4" width="8.8" height="8.8" rx="2.4"/>
+</svg>

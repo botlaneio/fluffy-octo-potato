@@ -85,6 +85,30 @@ and the badge changes itself.
 > the one thing that could put a wrong badge on the site — nothing else in the
 > codebase can.
 
+## The mark
+
+`components/ui/Logo.tsx` draws the Gate: two bars make the lane, and the block
+sits above the threshold it has crossed. It is the release-gate mechanism above
+drawn as a shape — the company's mark and its central claim are the same idea,
+which is the point.
+
+It replaces a pulse icon, which was accurate signage for BotLane's previous
+outbound-infrastructure product and would have been a false claim here.
+
+Reproduction rules are enforced by the component rather than by a style guide
+nobody reads. `currentColor` carries the lane and the accent carries the block,
+so the mark inherits whatever surface it sits on; `mono` collapses both to one
+colour for print. The threshold rule is the first element to die at small sizes,
+so it drops automatically below 20px — the two bars and the block still read.
+
+Standalone files live in `public/brand/` (dark, light, one-colour, and a tiled
+small-size variant). `app/icon.svg` is the favicon, using literal colours
+because the browser fetches it outside the page's CSS.
+
+No lockup SVG is shipped. The wordmark is set in Inter through the `Logo`
+component, so it stays in step with the rest of the site's typography instead of
+drifting as a separate outlined file.
+
 ## Content honesty
 
 No invented customers, logos, testimonials, certifications, uptime figures or
