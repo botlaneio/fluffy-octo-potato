@@ -228,6 +228,49 @@
     transform: translateY(-2px);
   }
 
+  /* --- Light surface scope ---------------------------------------------
+     Re-declares the surface and foreground tokens with light values. Every
+     utility and primitive in this codebase reads those tokens through
+     var(), so putting this class on a wrapper flips the entire subtree to
+     a light panel without touching a single line of its markup.
+
+     Used for the hero console, which reads as a product window sitting on
+     the dark ground rather than as one more dark panel among many. The
+     shadow is what seats it there: a white rectangle with no shadow looks
+     pasted on.
+     -------------------------------------------------------------------- */
+  .light-surface {
+    --color-bg: #ffffff;
+    --color-bg-raised: #f5f5f7;
+    --color-surface: #ffffff;
+    --color-surface-2: #eeeef1;
+    --color-surface-3: #e4e4e9;
+
+    --color-line: #e5e5ea;
+    --color-line-strong: #d2d2da;
+
+    /* The dark-ground greys map to 2.6–3.0:1 on white, which fails for text.
+       These three are set from the contrast requirement rather than by eye:
+       7.9, 5.9 and 4.6 to 1, so even the faintest column passes AA while the
+       three still read as a hierarchy. */
+    --color-fg: #0e0e12;
+    --color-fg-secondary: #4a4a54;
+    --color-fg-muted: #64646e;
+    --color-fg-faint: #74747e;
+
+    /* Both shifted darker: the dark-ground values do not carry enough
+       contrast against white. */
+    --color-accent: #2563eb;
+    --color-status-ready: #059669;
+    --color-status-progress: #b45309;
+    --color-status-planned: #8b8b96;
+
+    color: var(--color-fg);
+    box-shadow:
+      0 0 0 1px rgb(255 255 255 / 0.05),
+      0 28px 64px -24px rgb(0 0 0 / 0.8);
+  }
+
   /* --- Buttons -------------------------------------------------------- */
   .btn {
     display: inline-flex;

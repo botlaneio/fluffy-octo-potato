@@ -32,7 +32,7 @@ export function SystemsConsole() {
   const rows = featuredSystems.slice(0, 6);
 
   return (
-    <div className="panel overflow-hidden">
+    <div className="panel light-surface overflow-hidden">
       {/* Console header */}
       <div className="flex items-center justify-between border-b border-line px-4 py-3 lg:px-5">
         <span className="t-mono" style={{ color: "var(--color-fg-muted)" }}>
