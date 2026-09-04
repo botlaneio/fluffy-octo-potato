@@ -32,6 +32,14 @@
   --color-accent-dim: #1e3a63;
   --color-violet: #7252e5;
 
+  /* --- Hero atmosphere -------------------------------------------------
+     The one warm note in an otherwise cool palette, and deliberately
+     confined to the hero backdrop: a gold wash and a gold dot grid over
+     the near-black ground. Both are used at low alpha via color-mix, so
+     these are the saturated source colours, never applied neat. */
+  --color-hero-glow: #d9a64a;
+  --color-hero-grid: #e9caa0;
+
   /* --- Semantic status ------------------------------------------------ */
   --color-status-ready: #34d399;
   --color-status-progress: #fbbf24;

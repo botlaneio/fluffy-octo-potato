@@ -15,13 +15,23 @@ export function Nav() {
       }}
     >
       <nav aria-label="Primary" className="page-container">
-        <div className="flex h-16 items-center justify-between gap-8">
-          <a href="/" className="flex-none" aria-label="BotLane home">
+        {/* Three-column grid at desktop rather than a flex row: the outer
+            columns are equal 1fr regardless of how wide the logo or the CTA
+            happen to be, so the links sit at the true centre of the bar.
+            Flexing them would centre the links only when both ends matched
+            in width, which they do not. Below lg the grid is off and it is a
+            plain flex row: logo left, disclosure right. */}
+        <div className="flex h-16 items-center justify-between gap-8 lg:grid lg:grid-cols-[1fr_auto_1fr]">
+          <a
+            href="/"
+            className="flex-none lg:justify-self-start"
+            aria-label="BotLane home"
+          >
             <Logo />
           </a>
 
           {/* Desktop navigation */}
-          <ul className="hidden flex-1 items-center gap-1 lg:flex">
+          <ul className="hidden items-center gap-1 lg:flex lg:justify-self-center">
             {primaryNav.map((item) => (
               <li key={item.href}>
                 <a
@@ -34,7 +44,7 @@ export function Nav() {
             ))}
           </ul>
 
-          <div className="hidden flex-none items-center gap-2 lg:flex">
+          <div className="hidden flex-none items-center gap-2 lg:flex lg:justify-self-end">
             {/* No accounts yet, so no link to them. One flag, no dead links. */}
             {accountsEnabled ? (
               <a href="/signin" className="btn btn-sm btn-ghost">

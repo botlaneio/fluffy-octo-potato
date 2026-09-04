@@ -15,13 +15,34 @@ import { SystemsConsole } from "../SystemsConsole";
 export function Hero() {
   return (
     <section className="relative overflow-hidden">
-      {/* Restrained atmospheric wash — one soft ellipse, no blobs, no gradient spheres. */}
+      {/* Backdrop, in two layers over the near-black ground.
+
+          A soft gold wash, then a gold dot grid masked to an ellipse so it
+          fades out well before the console rather than tiling to the edges
+          like wallpaper. The mask is what keeps it a backdrop: an unmasked
+          grid reads as a texture applied to the page, a masked one reads as
+          light falling on part of it.
+
+          No blobs, no spheres, no mesh gradient. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 h-[620px]"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[820px]"
         style={{
           background:
-            "radial-gradient(ellipse 70% 100% at 50% -20%, color-mix(in srgb, var(--color-accent) 12%, transparent), transparent 70%)",
+            "radial-gradient(ellipse 58% 74% at 50% 2%, color-mix(in srgb, var(--color-hero-glow) 16%, transparent), transparent 72%)",
+        }}
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[820px]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--color-hero-grid) 23%, transparent) 1px, transparent 0)",
+          backgroundSize: "24px 24px",
+          maskImage:
+            "radial-gradient(ellipse 56% 64% at 50% 26%, #000 28%, transparent 76%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 56% 64% at 50% 26%, #000 28%, transparent 76%)",
         }}
       />
 
