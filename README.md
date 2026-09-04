@@ -202,8 +202,8 @@ introducing one deliberately.
 
 Two constants in `content/site.ts` control this page:
 
-- `contactEmail` — a **placeholder**. Verify the mailbox exists and is
-  monitored, or change it. It is the only address printed on the site.
+- `contactEmail` — `admin@botlane.io`, set by BotLane. It is the only address
+  printed on the site, so changing it here changes every reference.
 - `contactEndpoint` — **empty by design**. This is a static export, so there is
   no server to receive a POST.
 

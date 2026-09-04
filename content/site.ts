@@ -2,10 +2,11 @@ import type { DeploymentOption } from "@/lib/types";
 
 /**
  * ---------------------------------------------------------------------------
- * CONTACT CONFIGURATION — two values, both need setting before launch.
+ * CONTACT CONFIGURATION
  *
- * `contactEmail` is a placeholder. Verify this mailbox exists and is monitored,
- * or change it. It is the only address printed anywhere on the site.
+ * `contactEmail` is the only address printed anywhere on the site — it appears
+ * on /contact, in the privacy policy's rights clause, and in the footer. If it
+ * ever stops being monitored, change it here and every reference follows.
  *
  * `contactEndpoint` is empty by design. The site is a static export, so there
  * is no server to receive a form POST. Until this points at a real form
@@ -17,7 +18,7 @@ import type { DeploymentOption } from "@/lib/types";
  * automatically. Nothing else needs changing.
  * ---------------------------------------------------------------------------
  */
-export const contactEmail = "hello@botlane.io";
+export const contactEmail = "admin@botlane.io";
 export const contactEndpoint = "";
 
 /**
