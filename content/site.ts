@@ -142,13 +142,29 @@ export const serviceLadder = [
   },
 ] as const;
 
+/**
+ * Positioning strip under the hero. Every line here describes how the delivery
+ * model works — things that are true of the site and the catalogue as built.
+ * None of it is a proof claim, and none of it can become one: there are no
+ * customer counts, logos, certifications or uptime figures to put here.
+ */
 export const trustPoints = [
-  "Self-hostable",
-  "Pinned upstream versions",
-  "Docker / OCI images",
-  "Backup & restore procedures",
-  "Transparent licensing",
-  "Optional managed operation",
+  {
+    title: "Self-hostable",
+    body: "Systems run on infrastructure you control. Business data inside them does not pass through BotLane.",
+  },
+  {
+    title: "Transparent provenance",
+    body: "Every system states whether BotLane wrote it, packaged it, or supports someone else's software.",
+  },
+  {
+    title: "Twelve release gates",
+    body: "Nothing reads production-ready until all twelve are closed. The status is derived, never set by hand.",
+  },
+  {
+    title: "Optional managed operation",
+    body: "Take the release package and run it yourself, or hand monitoring, updates and backups to BotLane.",
+  },
 ] as const;
 
 export const footerNav = [
